@@ -1,0 +1,11 @@
+*.pyc
+*.pyd
+*.c
+*.exe
+*.ckpt
+
+__*.py
+setup.py
+
+temp/*
+data/*

@@ -7,7 +7,7 @@ from private.exp_settings import *
 
 env_vars = {
     # PATHS
-    'LD_LIBRARY_PATH': f'{CONDA_PATH}/lib/python3.8/site-packages/torch/lib/',
+    'LD_LIBRARY_PATH': f'{CONDA_PATH}/lib/python3.10/site-packages/torch/lib/',
     'LP': PROJ_DIR,  # Local Path
     'TEMP_DIR': TEMP_DIR,
     'MNT_DIR': MNT_DIR,
