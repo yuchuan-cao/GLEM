@@ -90,7 +90,7 @@ class ModelConfig(metaclass=ABCMeta):
         # Turn off Wandb gradients loggings
         os.environ["WANDB_WATCH"] = "false"
 
-        wandb_settings_given = self.wandb_name != 'OFF' or self.wandb_id != ''
+        '''wandb_settings_given = self.wandb_name != 'OFF' or self.wandb_id != ''
         not_parallel = self.local_rank <= 0
 
         if wandb_settings_given and not_parallel:
@@ -111,9 +111,9 @@ class ModelConfig(metaclass=ABCMeta):
                 self.wandb_on = True
             except:
                 return None
-        else:
-            os.environ["WANDB_DISABLED"] = "true"
-            return None
+        else:'''
+        os.environ["WANDB_DISABLED"] = "true"
+        return None
 
     # *  <<<<<<<<<<<<<<<<<<<< PATH RELATED >>>>>>>>>>>>>>>>>>>>
     # 对结果有影响的参数写在 para_prefix 里，结果没有影响的参数不要写在 para_prefix 里（e.g. shared configs like LM checkpoint）
