@@ -1,12 +1,12 @@
 from pathlib import Path
 
 # ! Servers
-LINUX_HOME = 'D:'
+LINUX_HOME = str(Path.home())
 CONDA_ENV_NAME = 'yuchuan'
-CONDA_PATH = f'{LINUX_HOME}/Anaconda3/envs/{CONDA_ENV_NAME}'
+CONDA_PATH = f'{LINUX_HOME}/autodl-tmp/conda/envs/{CONDA_ENV_NAME}'
 NV_HTOP_FILE = f"{CONDA_PATH}/bin/nvidia-htop.py"
 SV_INIT_CMDS = [
-    f'source {LINUX_HOME}/Anaconda3/etc/profile.d/conda.sh;conda activate {CONDA_ENV_NAME}',
+    f'source {LINUX_HOME}/autodl-tmp/conda/etc/profile.d/conda.sh;conda activate {CONDA_ENV_NAME}',
     f'alias tr_lm="python src/models/LMs/trainLM.py"',
 ]
 

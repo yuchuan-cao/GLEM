@@ -3,6 +3,7 @@
 *.c
 *.exe
 *.ckpt
+*.result
 
 __*.py
 setup.py
