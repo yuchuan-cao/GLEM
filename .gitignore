@@ -11,3 +11,4 @@ setup.py
 temp/*
 data/*
 GLEM/*
+temp_results/*
