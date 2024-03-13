@@ -65,7 +65,8 @@ class LmInfTrainer:
             fp16_full_eval=True,
             remove_unused_columns=False,#yuchuan: 默认为True造成accelerate提供的dataloader返回空字典
             ddp_find_unused_parameters=True,#yuchuan: 这两个应该是后续版本的transformers新加的特性, 并且默认为True会造成此代码报错, 不影响运行
-            prediction_loss_only=True,#yuchuan: 如果False, save_ckpt的时候会报错
+            prediction_loss_only=False,#yuchuan: 如果False, save_ckpt的时候会报错
+            report_to=None,
             label_names=['labels'],
         )
         trainer = Trainer(model=inf_model, args=inference_args)

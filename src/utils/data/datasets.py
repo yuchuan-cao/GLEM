@@ -162,7 +162,7 @@ class SeqGraph():
 
     def y_hat(self, nodes, on_cpu=False):
         # Pseudo labels overwritten by gold
-        is_gold = self.is_gold(nodes)
+        is_gold = self.is_gold(nodes, on_cpu=True)
         y_pred = th.softmax(self._th_float(self.ndata['pseudo_labels'][nodes] / self.cf.emi.temperature, on_cpu), dim=-1)
         # Overwrite pseudo_y using gold_y
         y_pred[is_gold] = self.y_gold(th.tensor(nodes)[is_gold], on_cpu)

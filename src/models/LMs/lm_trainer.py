@@ -116,10 +116,10 @@ class LMTrainer():
             learning_rate=cf.lr, weight_decay=cf.weight_decay,
             load_best_model_at_end=load_best_model_at_end, gradient_accumulation_steps=cf.grad_acc_steps,
             save_total_limit=1,
-            report_to='wandb' if cf.wandb_on else None,
+            report_to=None,#'wandb' if cf.wandb_on else None,
             remove_unused_columns=False,#yuchuan: 默认为True造成accelerate提供的dataloader返回空字典
             ddp_find_unused_parameters=True,#yuchuan: 这两个应该是后续版本的transformers新加的特性, 并且默认为True会造成此代码报错, 不影响运行
-            prediction_loss_only=True,#yuchuan: 如果False, save_ckpt的时候会报错
+            prediction_loss_only=False,#yuchuan: 如果False, save_ckpt的时候会报错
             label_names=['labels'],
             per_device_train_batch_size=cf.batch_size,
             per_device_eval_batch_size=cf.batch_size,# * 6 if cf.hf_model in {'distilbert-base-uncased', 'google/electra-base-discriminator'} else cf.batch_size * 10,
