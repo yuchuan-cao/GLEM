@@ -18,14 +18,14 @@ class ModelConfig(metaclass=ABCMeta):
         self.gpus = '0'  # Use GPU as default device
         self.wandb_name = ''
         self.wandb_id = ''
-        self.dataset = (d := DEFAULT_DATASET)
-        self.train_percentage = get_d_info(d)['train_ratio']
-        self.early_stop = EARLY_STOP
-        self.epochs = MAX_EPOCHS
+        self.dataset = (d := DEFAULT_DATASET) # global DEFAULT_DATASET = 'arxiv_TA_0.002' see: ../settings.py
+        self.train_percentage = get_d_info(d)['train_ratio'] # get_d_info: get global DATA_INFO['arxiv'] 
+        self.early_stop = EARLY_STOP # global EARLY_STOP = 30
+        self.epochs = MAX_EPOCHS # global MAX_EPOCHS = 300
         self.verbose = 1
         self.device = None
         self.wandb_on = False
-        self.birth_time = uf.get_cur_time(t_format='%m_%d-%H_%M_%S')
+        self.birth_time = uf.get_cur_time(t_format='%m_%d-%H_%M_%S') # 形如03_22-23_18_54
         self._wandb = None
 
         # Other attributes
