@@ -1,5 +1,3 @@
-import math
-
 from datasets import load_metric
 from transformers import AutoModel, EvalPrediction, TrainingArguments, Trainer
 import utils.function as uf
@@ -7,16 +5,18 @@ from models.LMs.model import *
 from models.GLEM.GLEM_utils import *
 from utils.data.datasets import *
 import torch as th
+import evaluate
 
-METRICS = {  # metric -> metric_path
-    'accuracy': 'src/utils/function/hf_accuracy.py',
+METRICS = ['accuracy','f1','precision','recall','spearmanr','pearsonr'] # yuchuan: 根据huggingface的提示, 采用新的官方库evaluate加载metrics, 并且从官方仓库加载, 弃用hf_accuracy.py
+    #{  # metric -> metric_path
+    #'accuracy': 'src/utils/function/hf_accuracy.py',
     #'f1score': 'src/utils/function/hf_f1.py',
     #'precision': 'src/utils/function/hf_precision.py',
     #'recall': 'src/utils/function/hf_recall.py',
     #'spearmanr': 'src/utils/function/hf_spearmanr.py',
     #'pearsonr': 'src/utils/function/hf_pearsonr.py',
 
-}
+    #}
 
 
 class LMTrainer():
@@ -39,7 +39,7 @@ class LMTrainer():
         subset_data = lambda sub_idx: th.utils.data.Subset(gold_data, sub_idx)
         self.datasets = {_: subset_data(getattr(d, f'{_}_x'))
                          for _ in ['train', 'valid', 'test']}
-        self.metrics = {m: load_metric(m_path) for m, m_path in METRICS.items()}
+        self.metrics = {m: evaluate.load(m) for m in METRICS}
 
         if cf.is_augmented:
             # Augment Label if Cir-train
