@@ -7,7 +7,8 @@ from utils.data.datasets import *
 import torch as th
 import evaluate
 
-METRICS = ['accuracy','f1','precision','recall','spearmanr','pearsonr'] # yuchuan: 根据huggingface的提示, 采用新的官方库evaluate加载metrics, 并且从官方仓库加载, 弃用hf_accuracy.py
+METRICS = ['accuracy','f1','precision','recall','spearmanr','pearsonr'] 
+    # yuchuan: 根据huggingface的提示, 采用新的官方库evaluate加载metrics, 且从官方仓库加载代码, 弃用hf_accuracy.py
     #{  # metric -> metric_path
     #'accuracy': 'src/utils/function/hf_accuracy.py',
     #'f1score': 'src/utils/function/hf_f1.py',
